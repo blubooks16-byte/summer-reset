@@ -1,0 +1,1392 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Summer Reset 2026</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+:root {
+  --blush: #F5E6E8;
+  --blush-mid: #EAC9CF;
+  --rose: #C97B84;
+  --rose-deep: #8C4A54;
+  --cream: #FAF7F2;
+  --warm-white: #FFFDF9;
+  --sand: #F0E8DC;
+  --sand-dark: #D4C4B0;
+  --text-primary: #2A1F22;
+  --text-secondary: #6B5459;
+  --text-light: #9E8589;
+  --gold: #C4A882;
+  --gold-light: #EAD9C2;
+  --green-soft: #D4E8DC;
+  --green: #5A8C6A;
+  --success: #4A7C5F;
+  --border: rgba(180,140,148,0.2);
+  --border-mid: rgba(180,140,148,0.35);
+  --radius: 16px;
+  --radius-sm: 8px;
+}
+* { box-sizing: border-box; margin: 0; padding: 0; }
+body {
+  font-family: 'DM Sans', sans-serif;
+  background: var(--cream);
+  color: var(--text-primary);
+  min-height: 100vh;
+  font-size: 15px;
+  line-height: 1.6;
+}
+
+/* HEADER */
+.header {
+  background: linear-gradient(135deg, #F5E6E8 0%, #FAF0EC 50%, #EAE0F5 100%);
+  padding: 2.5rem 1.5rem 2rem;
+  text-align: center;
+  border-bottom: 1px solid var(--border);
+  position: relative;
+  overflow: hidden;
+}
+.header::before {
+  content: '';
+  position: absolute;
+  top: -40px; right: -40px;
+  width: 200px; height: 200px;
+  background: radial-gradient(circle, rgba(201,123,132,0.12), transparent 70%);
+  border-radius: 50%;
+}
+.header-eyebrow {
+  font-family: 'DM Sans', sans-serif;
+  font-size: 10px;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: var(--rose);
+  margin-bottom: 0.5rem;
+}
+.header-title {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: clamp(2.4rem, 6vw, 3.8rem);
+  font-weight: 300;
+  color: var(--text-primary);
+  letter-spacing: 0.02em;
+  line-height: 1.1;
+}
+.header-title em {
+  font-style: italic;
+  color: var(--rose);
+}
+.header-sub {
+  font-size: 13px;
+  color: var(--text-secondary);
+  margin-top: 0.5rem;
+  font-weight: 300;
+}
+
+/* COUNTDOWN */
+.countdown-bar {
+  background: var(--warm-white);
+  border-bottom: 1px solid var(--border);
+  padding: 1.25rem 1.5rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0;
+  flex-wrap: wrap;
+}
+.countdown-unit {
+  text-align: center;
+  padding: 0 1.25rem;
+  border-right: 1px solid var(--border);
+}
+.countdown-unit:last-child { border-right: none; }
+.countdown-num {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 2.4rem;
+  font-weight: 400;
+  color: var(--rose-deep);
+  line-height: 1;
+  display: block;
+}
+.countdown-label {
+  font-size: 10px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--text-light);
+  display: block;
+  margin-top: 2px;
+}
+
+/* PROGRESS GLOBAL */
+.global-progress {
+  background: var(--warm-white);
+  padding: 1.25rem 1.5rem;
+  border-bottom: 1px solid var(--border);
+}
+.progress-meta {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  margin-bottom: 0.5rem;
+  font-size: 13px;
+  color: var(--text-secondary);
+}
+.progress-meta strong { color: var(--rose-deep); }
+.progress-track {
+  height: 6px;
+  background: var(--blush);
+  border-radius: 99px;
+  overflow: hidden;
+}
+.progress-fill {
+  height: 100%;
+  background: linear-gradient(90deg, var(--rose), var(--gold));
+  border-radius: 99px;
+  transition: width 0.6s ease;
+}
+
+/* NAV */
+.nav {
+  background: var(--warm-white);
+  border-bottom: 1px solid var(--border);
+  padding: 0 1rem;
+  display: flex;
+  overflow-x: auto;
+  scrollbar-width: none;
+  position: sticky;
+  top: 0;
+  z-index: 100;
+}
+.nav::-webkit-scrollbar { display: none; }
+.nav-btn {
+  padding: 0.9rem 1.1rem;
+  font-size: 12px;
+  font-family: 'DM Sans', sans-serif;
+  font-weight: 400;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--text-light);
+  background: none;
+  border: none;
+  border-bottom: 2px solid transparent;
+  cursor: pointer;
+  white-space: nowrap;
+  transition: color 0.2s, border-color 0.2s;
+}
+.nav-btn:hover { color: var(--rose); }
+.nav-btn.active { color: var(--rose-deep); border-bottom-color: var(--rose); font-weight: 500; }
+
+/* SECTIONS */
+.section { display: none; padding: 1.5rem; max-width: 780px; margin: 0 auto; }
+.section.active { display: block; }
+
+/* CARDS */
+.card {
+  background: var(--warm-white);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 1.25rem 1.4rem;
+  margin-bottom: 1rem;
+}
+.card-title {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 1.2rem;
+  font-weight: 400;
+  color: var(--text-primary);
+  margin-bottom: 0.9rem;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+.card-title span {
+  font-size: 13px;
+  font-family: 'DM Sans', sans-serif;
+  color: var(--text-light);
+  font-weight: 300;
+}
+
+/* STATS ROW */
+.stats-row {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
+  gap: 10px;
+  margin-bottom: 1rem;
+}
+.stat-card {
+  background: var(--sand);
+  border-radius: var(--radius-sm);
+  padding: 0.9rem;
+  text-align: center;
+}
+.stat-num {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 1.9rem;
+  font-weight: 400;
+  color: var(--rose-deep);
+  line-height: 1;
+  display: block;
+}
+.stat-label {
+  font-size: 11px;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--text-light);
+  display: block;
+  margin-top: 4px;
+}
+
+/* BADGES */
+.badges-row {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+  margin-bottom: 1rem;
+}
+.badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 5px 12px;
+  border-radius: 99px;
+  font-size: 12px;
+  font-weight: 500;
+  border: 1px solid;
+  opacity: 0.35;
+  transition: opacity 0.4s;
+}
+.badge.earned { opacity: 1; }
+.badge-perfect { background: #FFF0E8; color: #8C4A28; border-color: #E8B494; }
+.badge-weekly { background: #EAE0F5; color: #4A3472; border-color: #C4A8E8; }
+
+/* CHECKLIST */
+.checklist { list-style: none; }
+.checklist li {
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+  padding: 8px 0;
+  border-bottom: 1px solid var(--border);
+  cursor: pointer;
+  transition: background 0.15s;
+  border-radius: 6px;
+}
+.checklist li:last-child { border-bottom: none; }
+.checklist li:hover { background: var(--blush); padding-left: 4px; }
+.check-box {
+  width: 20px;
+  height: 20px;
+  min-width: 20px;
+  border-radius: 6px;
+  border: 1.5px solid var(--blush-mid);
+  background: white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.2s;
+  margin-top: 1px;
+}
+.checklist li.done .check-box {
+  background: var(--rose);
+  border-color: var(--rose);
+}
+.check-tick {
+  display: none;
+  width: 11px;
+  height: 8px;
+  border-left: 2px solid white;
+  border-bottom: 2px solid white;
+  transform: rotate(-45deg) translateY(-1px);
+}
+.checklist li.done .check-tick { display: block; }
+.check-text {
+  font-size: 14px;
+  color: var(--text-primary);
+  transition: color 0.2s;
+}
+.checklist li.done .check-text {
+  color: var(--text-light);
+  text-decoration: line-through;
+}
+.check-pts {
+  margin-left: auto;
+  font-size: 11px;
+  color: var(--gold);
+  font-weight: 500;
+  white-space: nowrap;
+}
+
+/* CALENDARIO */
+.cal-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 1rem;
+}
+.cal-nav-btn {
+  background: none;
+  border: 1px solid var(--border-mid);
+  border-radius: var(--radius-sm);
+  padding: 6px 14px;
+  font-size: 13px;
+  color: var(--text-secondary);
+  cursor: pointer;
+  font-family: 'DM Sans', sans-serif;
+  transition: all 0.2s;
+}
+.cal-nav-btn:hover { background: var(--blush); color: var(--rose-deep); }
+.cal-month-label {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 1.3rem;
+  font-weight: 400;
+  color: var(--text-primary);
+}
+.cal-grid {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  gap: 3px;
+  margin-bottom: 1rem;
+}
+.cal-dow {
+  text-align: center;
+  font-size: 10px;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--text-light);
+  padding: 6px 0;
+}
+.cal-day {
+  aspect-ratio: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  border-radius: var(--radius-sm);
+  cursor: pointer;
+  font-size: 13px;
+  position: relative;
+  border: 1px solid transparent;
+  transition: all 0.15s;
+  background: var(--warm-white);
+  color: var(--text-secondary);
+  gap: 2px;
+}
+.cal-day:hover { background: var(--blush); border-color: var(--blush-mid); }
+.cal-day.today {
+  background: var(--blush);
+  border-color: var(--rose);
+  color: var(--rose-deep);
+  font-weight: 500;
+}
+.cal-day.selected {
+  background: var(--rose);
+  color: white;
+  border-color: var(--rose-deep);
+}
+.cal-day.out-range { opacity: 0.25; pointer-events: none; }
+.cal-day.weekend { color: var(--rose); }
+.cal-day.weekend.selected { color: white; }
+.cal-dot {
+  width: 4px;
+  height: 4px;
+  border-radius: 50%;
+  background: var(--gold);
+}
+.cal-day.selected .cal-dot { background: rgba(255,255,255,0.6); }
+.cal-day.perfect .cal-dot { background: var(--success); }
+.cal-day.selected.perfect .cal-dot { background: white; }
+.cal-day-num { line-height: 1; font-size: 12px; }
+
+/* NOTE */
+.notes-area {
+  width: 100%;
+  min-height: 120px;
+  padding: 1rem;
+  font-family: 'DM Sans', sans-serif;
+  font-size: 14px;
+  color: var(--text-primary);
+  background: var(--cream);
+  border: 1px solid var(--border-mid);
+  border-radius: var(--radius-sm);
+  resize: vertical;
+  transition: border-color 0.2s;
+  line-height: 1.7;
+}
+.notes-area:focus { outline: none; border-color: var(--rose); }
+.notes-saved {
+  font-size: 12px;
+  color: var(--success);
+  opacity: 0;
+  transition: opacity 0.3s;
+  margin-top: 4px;
+  display: block;
+}
+
+/* OBIETTIVO */
+.goal-section {
+  background: linear-gradient(135deg, #FFF0E8, #FAF0F5);
+  border: 1px solid rgba(201,123,132,0.25);
+  border-radius: var(--radius);
+  padding: 1.5rem;
+  margin-bottom: 1rem;
+  text-align: center;
+}
+.goal-emoji { font-size: 2.5rem; margin-bottom: 0.75rem; }
+.goal-title {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 1.6rem;
+  font-weight: 300;
+  color: var(--text-primary);
+  margin-bottom: 0.4rem;
+}
+.goal-title em { font-style: italic; color: var(--rose); }
+.goal-sub { font-size: 13px; color: var(--text-secondary); }
+
+.goal-tasks { list-style: none; margin-top: 1rem; text-align: left; }
+.goal-tasks li {
+  padding: 7px 0;
+  border-bottom: 1px solid var(--border);
+  font-size: 14px;
+  color: var(--text-secondary);
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+.goal-tasks li:last-child { border-bottom: none; }
+.goal-tasks li::before {
+  content: '';
+  width: 5px; height: 5px;
+  background: var(--rose);
+  border-radius: 50%;
+  flex-shrink: 0;
+}
+
+/* CHART */
+#chart-container { width: 100%; overflow-x: auto; }
+canvas { display: block; }
+
+/* EXPORT BTN */
+.btn-export {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  padding: 9px 20px;
+  background: none;
+  border: 1px solid var(--border-mid);
+  border-radius: var(--radius-sm);
+  font-family: 'DM Sans', sans-serif;
+  font-size: 13px;
+  color: var(--text-secondary);
+  cursor: pointer;
+  transition: all 0.2s;
+}
+.btn-export:hover {
+  background: var(--blush);
+  color: var(--rose-deep);
+  border-color: var(--rose);
+}
+.btn-export svg { width: 15px; height: 15px; stroke: currentColor; }
+
+/* DATE HEADING */
+.date-heading {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 1.4rem;
+  font-weight: 300;
+  color: var(--text-primary);
+  margin-bottom: 0.3rem;
+}
+.date-sub {
+  font-size: 12px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--text-light);
+  margin-bottom: 1rem;
+  display: block;
+}
+
+/* WEEK SELECTOR */
+.week-select-row {
+  display: flex;
+  gap: 8px;
+  overflow-x: auto;
+  scrollbar-width: none;
+  padding-bottom: 4px;
+  margin-bottom: 1rem;
+}
+.week-select-row::-webkit-scrollbar { display: none; }
+.week-pill {
+  flex-shrink: 0;
+  padding: 6px 14px;
+  border-radius: 99px;
+  border: 1px solid var(--border-mid);
+  font-size: 12px;
+  cursor: pointer;
+  background: var(--warm-white);
+  color: var(--text-secondary);
+  font-family: 'DM Sans', sans-serif;
+  transition: all 0.2s;
+}
+.week-pill:hover { background: var(--blush); }
+.week-pill.active { background: var(--rose); color: white; border-color: var(--rose-deep); }
+
+/* FOOTER */
+.footer {
+  text-align: center;
+  padding: 2rem 1rem;
+  font-size: 11px;
+  color: var(--text-light);
+  letter-spacing: 0.06em;
+}
+
+/* RESPONSIVE */
+@media (max-width: 500px) {
+  .stats-row { grid-template-columns: repeat(2, 1fr); }
+  .countdown-unit { padding: 0 0.75rem; }
+  .countdown-num { font-size: 1.9rem; }
+  .section { padding: 1rem; }
+  .cal-day-num { font-size: 11px; }
+  .cal-day { border-radius: 6px; }
+}
+</style>
+</head>
+<body>
+
+<div class="header">
+  <p class="header-eyebrow">✦ Challenge 2026 ✦</p>
+  <h1 class="header-title">Summer <em>Reset</em></h1>
+  <p class="header-sub">11 giugno — 25 luglio 2026 · Glow Up Challenge</p>
+</div>
+
+<div class="countdown-bar">
+  <div class="countdown-unit">
+    <span class="countdown-num" id="cd-days">–</span>
+    <span class="countdown-label">giorni</span>
+  </div>
+  <div class="countdown-unit">
+    <span class="countdown-num" id="cd-hours">–</span>
+    <span class="countdown-label">ore</span>
+  </div>
+  <div class="countdown-unit">
+    <span class="countdown-num" id="cd-min">–</span>
+    <span class="countdown-label">minuti</span>
+  </div>
+  <div class="countdown-unit">
+    <span class="countdown-num" id="cd-sec">–</span>
+    <span class="countdown-label">secondi</span>
+  </div>
+</div>
+
+<div class="global-progress">
+  <div class="progress-meta">
+    <span>Avanzamento verso il 25 luglio</span>
+    <strong id="progress-pct">0%</strong>
+  </div>
+  <div class="progress-track">
+    <div class="progress-fill" id="progress-fill" style="width:0%"></div>
+  </div>
+</div>
+
+<nav class="nav">
+  <button class="nav-btn active" onclick="showSection('oggi')">Oggi</button>
+  <button class="nav-btn" onclick="showSection('calendario')">Calendario</button>
+  <button class="nav-btn" onclick="showSection('progressi')">Progressi</button>
+  <button class="nav-btn" onclick="showSection('obiettivo')">Obiettivo</button>
+</nav>
+
+<!-- SEZIONE OGGI -->
+<section class="section active" id="s-oggi">
+
+  <div style="margin-bottom:1rem;">
+    <p class="date-heading" id="today-heading">–</p>
+    <span class="date-sub" id="today-sub">–</span>
+  </div>
+
+  <div class="badges-row">
+    <div class="badge badge-perfect" id="badge-perfect">✦ Perfect Day</div>
+    <div class="badge badge-weekly" id="badge-weekly">◈ Weekly Winner</div>
+  </div>
+
+  <div class="stats-row">
+    <div class="stat-card">
+      <span class="stat-num" id="pts-today">0</span>
+      <span class="stat-label">punti oggi</span>
+    </div>
+    <div class="stat-card">
+      <span class="stat-num" id="pts-week">0</span>
+      <span class="stat-label">punti settimana</span>
+    </div>
+    <div class="stat-card">
+      <span class="stat-num" id="pts-total">0</span>
+      <span class="stat-label">totale</span>
+    </div>
+    <div class="stat-card">
+      <span class="stat-num" id="streak-count">0</span>
+      <span class="stat-label">giorni perfect</span>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-title">
+      Checklist del giorno
+      <span id="tasks-progress-label">0/0 completate</span>
+    </div>
+    <div class="progress-track" style="margin-bottom:1rem;">
+      <div class="progress-fill" id="tasks-progress-fill" style="width:0%"></div>
+    </div>
+    <ul class="checklist" id="task-list"></ul>
+  </div>
+
+  <div class="card">
+    <div class="card-title">Note del giorno</div>
+    <textarea class="notes-area" id="note-text" placeholder="Come ti senti oggi? Cosa hai fatto di speciale?"></textarea>
+    <span class="notes-saved" id="note-saved">✓ Salvato</span>
+  </div>
+
+</section>
+
+<!-- SEZIONE CALENDARIO -->
+<section class="section" id="s-calendario">
+  <div class="card">
+    <div class="cal-header">
+      <button class="cal-nav-btn" id="cal-prev">←</button>
+      <span class="cal-month-label" id="cal-month-label">Giugno 2026</span>
+      <button class="cal-nav-btn" id="cal-next">→</button>
+    </div>
+    <div class="cal-grid" id="cal-grid"></div>
+  </div>
+
+  <div class="card" id="cal-day-detail" style="display:none;">
+    <div class="card-title" id="cal-detail-title">–</div>
+    <div class="badges-row" id="cal-badges"></div>
+    <ul class="checklist" id="cal-task-list"></ul>
+    <div style="margin-top:1rem;">
+      <p style="font-size:12px;color:var(--text-light);margin-bottom:6px;letter-spacing:0.06em;text-transform:uppercase;">Note</p>
+      <textarea class="notes-area" id="cal-note-text" placeholder="Note del giorno..." style="min-height:80px;"></textarea>
+      <span class="notes-saved" id="cal-note-saved">✓ Salvato</span>
+    </div>
+  </div>
+</section>
+
+<!-- SEZIONE PROGRESSI -->
+<section class="section" id="s-progressi">
+
+  <div class="stats-row" style="margin-bottom:1rem;">
+    <div class="stat-card">
+      <span class="stat-num" id="stat-total-pts">0</span>
+      <span class="stat-label">punti totali</span>
+    </div>
+    <div class="stat-card">
+      <span class="stat-num" id="stat-perfect-days">0</span>
+      <span class="stat-label">perfect days</span>
+    </div>
+    <div class="stat-card">
+      <span class="stat-num" id="stat-weekly-wins">0</span>
+      <span class="stat-label">weekly winner</span>
+    </div>
+    <div class="stat-card">
+      <span class="stat-num" id="stat-days-done">0</span>
+      <span class="stat-label">giorni tracked</span>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-title">Punti giornalieri</div>
+    <div id="chart-container">
+      <canvas id="chart-daily" height="180"></canvas>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-title">Punti settimanali</div>
+    <div id="chart-weekly-container">
+      <canvas id="chart-weekly" height="140"></canvas>
+    </div>
+  </div>
+
+  <div style="margin-top:0.5rem;">
+    <button class="btn-export" onclick="exportCSV()">
+      <svg viewBox="0 0 24 24" fill="none" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 15V3m0 12l-4-4m4 4l4-4M2 17l.621 2.485A2 2 0 004.561 21h14.878a2 2 0 001.94-1.515L22 17"/></svg>
+      Esporta CSV
+    </button>
+  </div>
+</section>
+
+<!-- SEZIONE OBIETTIVO -->
+<section class="section" id="s-obiettivo">
+
+  <div class="goal-section">
+    <div class="goal-emoji">🔥</div>
+    <h2 class="goal-title">Grigliata del <em>25 luglio</em></h2>
+    <p class="goal-sub">Il momento per cui stai lavorando ogni singolo giorno</p>
+  </div>
+
+  <div class="card">
+    <div class="card-title">Cosa ti aspetta il 25 luglio</div>
+    <ul class="goal-tasks">
+      <li>Corpo, mente e pelle al massimo grazie alla tua routine</li>
+      <li>Energia e vitalità conquistate giorno per giorno</li>
+      <li>Abitudini sane diventate parte di te</li>
+      <li>Orgoglio per ogni singolo check completato</li>
+      <li>Una versione di te più forte e consapevole</li>
+      <li>Celebra i tuoi traguardi diventati abitudine 🥂</li>
+    </ul>
+  </div>
+
+  <div class="card">
+    <div class="card-title">Il tuo mantra</div>
+    <p style="font-family:'Cormorant Garamond',serif;font-size:1.3rem;font-weight:300;color:var(--text-primary);line-height:1.5;font-style:italic;">
+      "Ogni piccola azione oggi è un investimento nel tuo futuro self.
+      Non serve la perfezione — serve la costanza."
+    </p>
+  </div>
+
+  <div class="card">
+    <div class="card-title">Avanzamento finale <span id="goal-pct-label">0%</span></div>
+    <div class="progress-track" style="height:10px;">
+      <div class="progress-fill" id="goal-progress-fill" style="width:0%"></div>
+    </div>
+    <p style="font-size:12px;color:var(--text-light);margin-top:8px;">
+      <span id="goal-pts-earned">0</span> punti guadagnati su un massimo stimato di <span id="goal-pts-max">–</span>
+    </p>
+  </div>
+
+</section>
+
+<div class="footer">Summer Reset 2026 · fatta con ♡ per te</div>
+
+<script>
+// ─── DATI ─────────────────────────────────────────────────────────────────────
+const START = new Date(2026, 5, 11);  // 11 giugno
+const END   = new Date(2026, 6, 25);  // 25 luglio
+
+const TASKS_WEEKDAY = [
+  '🌅 Alzarsi entro le 6:00',
+  '💧 2 litri d\'acqua',
+  '🏃‍♀️ 20 min di yoga',
+'💧 colazione',
+ '🧴 Skincare mattina',
+'💧 cura della casa',
+  '🥗 Pranzo sano e nutriente',
+'🏃‍♀️ palestra',
+  '📵 1 ora senza schermo prima di dormire',
+'🏃‍♀️ corsa o yoga',
+  '📖 15 min lettura o podcast crescita',
+  '🧴 Skincare mattina',
+'🧴 Skincare sera',
+  '😴 Dormire entro le 23:30',
+  '🌿 5 min meditazione o respiro'
+];
+
+const TASKS_SATURDAY = [
+'🌅 sveglia entro le 7:00', 
+'🏃‍♀️ corsa lunga da programma', 
+'💧 colazione', 
+'🧴 doccia e skincare', 
+'svago', 
+'relax', 
+'yoga',
+'🧴 Skincare sera'
+];
+
+const TASKS_SUNDAY = [
+  '🌅 sveglia naturale', 
+'💧 colazione', 
+'🧴 doccia e skincare', 
+'svago', 
+'🏃‍♀️ corsetta',
+'relax', 
+'yoga',
+'🧴 Skincare sera',
+];
+
+function getTasksForDate(d) {
+  const day = d.getDay(); // 0=dom, 6=sab
+  if (day === 6) return TASKS_SATURDAY;
+  if (day === 0) return TASKS_SUNDAY;
+  return TASKS_WEEKDAY;
+}
+
+function dateKey(d) {
+  return `${d.getFullYear()}-${String(d.getMonth()+1).padStart(2,'0')}-${String(d.getDate()).padStart(2,'0')}`;
+}
+
+function loadData() {
+  try { return JSON.parse(localStorage.getItem('sr2026') || '{}'); }
+  catch(e) { return {}; }
+}
+
+function saveData(data) {
+  localStorage.setItem('sr2026', JSON.stringify(data));
+}
+
+function inRange(d) {
+  const t = d.getTime();
+  return t >= START.getTime() && t <= END.getTime();
+}
+
+function getPtsForDay(data, key) {
+  const day = data[key];
+  if (!day) return 0;
+  return (day.tasks || []).filter(Boolean).length;
+}
+
+function isPerfect(data, key, d) {
+  const day = data[key];
+  if (!day) return false;
+  const tasks = getTasksForDate(d);
+  return (day.tasks || []).filter(Boolean).length === tasks.length;
+}
+
+function getWeekStart(d) {
+  const day = d.getDay();
+  const diff = (day === 0) ? -6 : 1 - day;
+  const ws = new Date(d);
+  ws.setDate(d.getDate() + diff);
+  ws.setHours(0,0,0,0);
+  return ws;
+}
+
+function getWeekPoints(data, d) {
+  const ws = getWeekStart(d);
+  let pts = 0;
+  for (let i = 0; i < 7; i++) {
+    const dd = new Date(ws);
+    dd.setDate(ws.getDate() + i);
+    if (inRange(dd)) pts += getPtsForDay(data, dateKey(dd));
+  }
+  return pts;
+}
+
+function countPerfectDays(data) {
+  let count = 0;
+  const cur = new Date(START);
+  while (cur <= END) {
+    const k = dateKey(cur);
+    if (isPerfect(data, k, new Date(cur))) count++;
+    cur.setDate(cur.getDate()+1);
+  }
+  return count;
+}
+
+function countWeeklyWins(data) {
+  const weeks = new Set();
+  const cur = new Date(START);
+  while (cur <= END) {
+    const ws = getWeekStart(new Date(cur));
+    const wk = dateKey(ws);
+    if (!weeks.has(wk)) {
+      weeks.add(wk);
+      if (getWeekPoints(data, new Date(cur)) >= 50) {
+        // counted below
+      }
+    }
+    cur.setDate(cur.getDate()+1);
+  }
+  let wins = 0;
+  weeks.forEach(wk => {
+    const d = new Date(wk);
+    if (getWeekPoints(data, d) >= 50) wins++;
+  });
+  return wins;
+}
+
+function getTotalPoints(data) {
+  let pts = 0;
+  const cur = new Date(START);
+  while (cur <= END) {
+    pts += getPtsForDay(data, dateKey(cur));
+    cur.setDate(cur.getDate()+1);
+  }
+  return pts;
+}
+
+function getDaysDone(data) {
+  let count = 0;
+  const cur = new Date(START);
+  while (cur <= END) {
+    const k = dateKey(cur);
+    if (data[k] && getPtsForDay(data, k) > 0) count++;
+    cur.setDate(cur.getDate()+1);
+  }
+  return count;
+}
+
+// Massimo possibile
+function getMaxPossiblePoints() {
+  let pts = 0;
+  const cur = new Date(START);
+  while (cur <= END) {
+    pts += getTasksForDate(new Date(cur)).length;
+    cur.setDate(cur.getDate()+1);
+  }
+  return pts;
+}
+
+// ─── STATO ─────────────────────────────────────────────────────────────────────
+let selectedDate = new Date();
+if (!inRange(selectedDate)) selectedDate = new Date(START);
+let calViewMonth = selectedDate.getMonth();
+let calViewYear  = selectedDate.getFullYear();
+let selectedCalDate = null;
+
+// ─── COUNTDOWN ────────────────────────────────────────────────────────────────
+function updateCountdown() {
+  const now = new Date();
+  const diff = END - now;
+  if (diff <= 0) {
+    ['cd-days','cd-hours','cd-min','cd-sec'].forEach(id => document.getElementById(id).textContent = '0');
+    return;
+  }
+  const days  = Math.floor(diff / 86400000);
+  const hours = Math.floor((diff % 86400000) / 3600000);
+  const min   = Math.floor((diff % 3600000) / 60000);
+  const sec   = Math.floor((diff % 60000) / 1000);
+  document.getElementById('cd-days').textContent  = days;
+  document.getElementById('cd-hours').textContent = hours;
+  document.getElementById('cd-min').textContent   = min;
+  document.getElementById('cd-sec').textContent   = sec;
+}
+
+// ─── GLOBAL PROGRESS ─────────────────────────────────────────────────────────
+function updateGlobalProgress() {
+  const now = new Date();
+  const total = END - START;
+  const done  = Math.min(now - START, total);
+  const pct = Math.max(0, Math.round((done / total) * 100));
+  document.getElementById('progress-pct').textContent = pct + '%';
+  document.getElementById('progress-fill').style.width = pct + '%';
+}
+
+// ─── SEZIONE OGGI ─────────────────────────────────────────────────────────────
+const MONTHS_IT = ['gennaio','febbraio','marzo','aprile','maggio','giugno','luglio','agosto','settembre','ottobre','novembre','dicembre'];
+const DAYS_IT   = ['domenica','lunedì','martedì','mercoledì','giovedì','venerdì','sabato'];
+
+function renderOggi() {
+  const data = loadData();
+  const d = new Date();
+  if (!inRange(d)) {
+    document.getElementById('today-heading').textContent = 'Challenge non attiva';
+    document.getElementById('today-sub').textContent = '11 giugno – 25 luglio 2026';
+    return;
+  }
+  const k = dateKey(d);
+  const tasks = getTasksForDate(d);
+  const dayData = data[k] || { tasks: Array(tasks.length).fill(false), note: '' };
+
+  document.getElementById('today-heading').textContent =
+    DAYS_IT[d.getDay()] + ' ' + d.getDate() + ' ' + MONTHS_IT[d.getMonth()];
+  document.getElementById('today-sub').textContent =
+    (d.getDay()===6 ? 'Sabato — checklist weekend' : d.getDay()===0 ? 'Domenica — checklist domenica' : 'Giorno feriale');
+
+  const pts = dayData.tasks.filter(Boolean).length;
+  const wkPts = getWeekPoints(data, d);
+  const totalPts = getTotalPoints(data);
+  const perfectCount = countPerfectDays(data);
+
+  document.getElementById('pts-today').textContent = pts;
+  document.getElementById('pts-week').textContent = wkPts;
+  document.getElementById('pts-total').textContent = totalPts;
+  document.getElementById('streak-count').textContent = perfectCount;
+
+  const pct = tasks.length > 0 ? Math.round((pts / tasks.length) * 100) : 0;
+  document.getElementById('tasks-progress-fill').style.width = pct + '%';
+  document.getElementById('tasks-progress-label').textContent = pts + '/' + tasks.length + ' completate';
+
+  const perfect = pts === tasks.length;
+  const weekWin = wkPts >= 50;
+  document.getElementById('badge-perfect').classList.toggle('earned', perfect);
+  document.getElementById('badge-weekly').classList.toggle('earned', weekWin);
+
+  // Note
+  document.getElementById('note-text').value = dayData.note || '';
+  document.getElementById('note-text').oninput = function() {
+    const d2 = loadData();
+    if (!d2[k]) d2[k] = { tasks: Array(tasks.length).fill(false), note: '' };
+    d2[k].note = this.value;
+    saveData(d2);
+    const el = document.getElementById('note-saved');
+    el.style.opacity = '1';
+    clearTimeout(el._t);
+    el._t = setTimeout(() => el.style.opacity = '0', 2000);
+  };
+
+  // Task list
+  const ul = document.getElementById('task-list');
+  ul.innerHTML = '';
+  tasks.forEach((t, i) => {
+    const li = document.createElement('li');
+    li.className = dayData.tasks[i] ? 'done' : '';
+    li.innerHTML = `
+      <div class="check-box"><div class="check-tick"></div></div>
+      <span class="check-text">${t}</span>
+      <span class="check-pts">+1 pt</span>
+    `;
+    li.onclick = () => {
+      const d2 = loadData();
+      if (!d2[k]) d2[k] = { tasks: Array(tasks.length).fill(false), note: '' };
+      d2[k].tasks[i] = !d2[k].tasks[i];
+      saveData(d2);
+      renderOggi();
+      renderStats();
+      renderCalendar();
+    };
+    ul.appendChild(li);
+  });
+}
+
+// ─── CALENDARIO ───────────────────────────────────────────────────────────────
+function renderCalendar() {
+  const data = loadData();
+  const months = ['Gennaio','Febbraio','Marzo','Aprile','Maggio','Giugno','Luglio','Agosto','Settembre','Ottobre','Novembre','Dicembre'];
+  document.getElementById('cal-month-label').textContent = months[calViewMonth] + ' ' + calViewYear;
+
+  const grid = document.getElementById('cal-grid');
+  grid.innerHTML = '';
+
+  const dows = ['L','M','M','G','V','S','D'];
+  dows.forEach(d => {
+    const el = document.createElement('div');
+    el.className = 'cal-dow';
+    el.textContent = d;
+    grid.appendChild(el);
+  });
+
+  const firstDay = new Date(calViewYear, calViewMonth, 1);
+  let startDow = firstDay.getDay();
+  if (startDow === 0) startDow = 7;
+  startDow -= 1;
+
+  for (let i = 0; i < startDow; i++) {
+    const el = document.createElement('div');
+    grid.appendChild(el);
+  }
+
+  const daysInMonth = new Date(calViewYear, calViewMonth+1, 0).getDate();
+  const today = new Date();
+  for (let day = 1; day <= daysInMonth; day++) {
+    const d = new Date(calViewYear, calViewMonth, day);
+    const k = dateKey(d);
+    const el = document.createElement('div');
+    el.className = 'cal-day';
+    if (!inRange(d)) el.classList.add('out-range');
+
+    const dow = d.getDay();
+    if (dow === 0 || dow === 6) el.classList.add('weekend');
+
+    const isToday = dateKey(today) === k;
+    if (isToday) el.classList.add('today');
+
+    if (selectedCalDate && dateKey(selectedCalDate) === k) el.classList.add('selected');
+
+    const pts = getPtsForDay(data, k);
+    const hasPerfect = isPerfect(data, k, d);
+    if (hasPerfect) el.classList.add('perfect');
+
+    const numEl = document.createElement('div');
+    numEl.className = 'cal-day-num';
+    numEl.textContent = day;
+    el.appendChild(numEl);
+
+    if (pts > 0 && inRange(d)) {
+      const dot = document.createElement('div');
+      dot.className = 'cal-dot';
+      el.appendChild(dot);
+    }
+
+    if (inRange(d)) {
+      el.onclick = () => { selectedCalDate = d; renderCalendar(); renderCalDayDetail(d); };
+    }
+    grid.appendChild(el);
+  }
+}
+
+function renderCalDayDetail(d) {
+  const data = loadData();
+  const k = dateKey(d);
+  const tasks = getTasksForDate(d);
+  const dayData = data[k] || { tasks: Array(tasks.length).fill(false), note: '' };
+
+  const detail = document.getElementById('cal-day-detail');
+  detail.style.display = 'block';
+
+  document.getElementById('cal-detail-title').textContent =
+    DAYS_IT[d.getDay()] + ' ' + d.getDate() + ' ' + MONTHS_IT[d.getMonth()];
+
+  const pts = dayData.tasks.filter(Boolean).length;
+  const perfect = pts === tasks.length;
+  const wkPts = getWeekPoints(data, d);
+  const weekWin = wkPts >= 50;
+
+  const badges = document.getElementById('cal-badges');
+  badges.innerHTML = '';
+  if (perfect && pts > 0) {
+    const b = document.createElement('div');
+    b.className = 'badge badge-perfect earned';
+    b.textContent = '✦ Perfect Day';
+    badges.appendChild(b);
+  }
+  if (weekWin) {
+    const b = document.createElement('div');
+    b.className = 'badge badge-weekly earned';
+    b.textContent = '◈ Weekly Winner';
+    badges.appendChild(b);
+  }
+
+  const ul = document.getElementById('cal-task-list');
+  ul.innerHTML = '';
+  tasks.forEach((t, i) => {
+    const li = document.createElement('li');
+    li.className = dayData.tasks[i] ? 'done' : '';
+    li.innerHTML = `<div class="check-box"><div class="check-tick"></div></div><span class="check-text">${t}</span><span class="check-pts">+1 pt</span>`;
+    li.onclick = () => {
+      const d2 = loadData();
+      if (!d2[k]) d2[k] = { tasks: Array(tasks.length).fill(false), note: '' };
+      d2[k].tasks[i] = !d2[k].tasks[i];
+      saveData(d2);
+      renderCalDayDetail(d);
+      renderCalendar();
+      renderOggi();
+      renderStats();
+    };
+    ul.appendChild(li);
+  });
+
+  const noteArea = document.getElementById('cal-note-text');
+  noteArea.value = dayData.note || '';
+  noteArea.oninput = function() {
+    const d2 = loadData();
+    if (!d2[k]) d2[k] = { tasks: Array(tasks.length).fill(false), note: '' };
+    d2[k].note = this.value;
+    saveData(d2);
+    const el = document.getElementById('cal-note-saved');
+    el.style.opacity = '1';
+    clearTimeout(el._t);
+    el._t = setTimeout(() => el.style.opacity = '0', 2000);
+  };
+
+  detail.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+}
+
+document.getElementById('cal-prev').onclick = () => {
+  calViewMonth--;
+  if (calViewMonth < 0) { calViewMonth = 11; calViewYear--; }
+  renderCalendar();
+};
+document.getElementById('cal-next').onclick = () => {
+  calViewMonth++;
+  if (calViewMonth > 11) { calViewMonth = 0; calViewYear++; }
+  renderCalendar();
+};
+
+// ─── PROGRESSI & GRAFICI ─────────────────────────────────────────────────────
+let chartDaily = null, chartWeekly = null;
+
+function renderStats() {
+  const data = loadData();
+  document.getElementById('stat-total-pts').textContent = getTotalPoints(data);
+  document.getElementById('stat-perfect-days').textContent = countPerfectDays(data);
+  document.getElementById('stat-weekly-wins').textContent = countWeeklyWins(data);
+  document.getElementById('stat-days-done').textContent = getDaysDone(data);
+
+  renderDailyChart(data);
+  renderWeeklyChart(data);
+  renderGoalSection(data);
+}
+
+function renderGoalSection(data) {
+  const total = getTotalPoints(data);
+  const max = getMaxPossiblePoints();
+  const pct = max > 0 ? Math.round((total / max) * 100) : 0;
+  document.getElementById('goal-pts-earned').textContent = total;
+  document.getElementById('goal-pts-max').textContent = max;
+  document.getElementById('goal-pct-label').textContent = pct + '%';
+  document.getElementById('goal-progress-fill').style.width = pct + '%';
+}
+
+function renderDailyChart(data) {
+  const labels = [], values = [], colors = [];
+  const cur = new Date(START);
+  const today = new Date();
+  while (cur <= END && cur <= today) {
+    labels.push(cur.getDate() + '/' + (cur.getMonth()+1));
+    const k = dateKey(cur);
+    const pts = getPtsForDay(data, k);
+    values.push(pts);
+    const perfect = isPerfect(data, k, new Date(cur));
+    colors.push(perfect ? '#5A8C6A' : '#C97B84');
+    cur.setDate(cur.getDate()+1);
+  }
+
+  const canvas = document.getElementById('chart-daily');
+  const W = canvas.parentElement.offsetWidth || 680;
+  canvas.width = W;
+  canvas.height = 180;
+  const ctx = canvas.getContext('2d');
+  ctx.clearRect(0, 0, W, 180);
+
+  if (values.length === 0) {
+    ctx.fillStyle = '#9E8589';
+    ctx.font = '13px DM Sans, sans-serif';
+    ctx.fillText('Nessun dato ancora — inizia oggi! ✦', 20, 90);
+    return;
+  }
+
+  const maxV = Math.max(...values, 1);
+  const padL = 30, padR = 10, padT = 20, padB = 30;
+  const w = W - padL - padR;
+  const h = 180 - padT - padB;
+  const bw = Math.max(3, Math.floor(w / values.length) - 2);
+
+  ctx.fillStyle = 'rgba(240,232,220,0.5)';
+  ctx.fillRect(padL, padT, w, h);
+
+  values.forEach((v, i) => {
+    const x = padL + (i / values.length) * w + (w / values.length - bw) / 2;
+    const bh = (v / maxV) * h;
+    const y = padT + h - bh;
+    ctx.fillStyle = colors[i];
+    ctx.beginPath();
+    ctx.roundRect ? ctx.roundRect(x, y, bw, bh, 3) : ctx.rect(x, y, bw, bh);
+    ctx.fill();
+  });
+
+  // x labels (every 7)
+  ctx.fillStyle = '#9E8589';
+  ctx.font = '10px DM Sans, sans-serif';
+  ctx.textAlign = 'center';
+  values.forEach((v, i) => {
+    if (i % 7 === 0) {
+      const x = padL + (i / values.length) * w + w / values.length / 2;
+      ctx.fillText(labels[i], x, 180 - 8);
+    }
+  });
+
+  // y axis
+  ctx.fillStyle = '#9E8589';
+  ctx.textAlign = 'right';
+  [0, Math.round(maxV/2), maxV].forEach(v => {
+    const y = padT + h - (v / maxV) * h;
+    ctx.fillText(v, padL - 4, y + 3);
+    ctx.strokeStyle = 'rgba(180,140,148,0.15)';
+    ctx.beginPath();
+    ctx.moveTo(padL, y); ctx.lineTo(W - padR, y);
+    ctx.stroke();
+  });
+}
+
+function renderWeeklyChart(data) {
+  const weeks = [];
+  const cur = new Date(START);
+  const today = new Date();
+  let lastWk = null;
+  while (cur <= END && cur <= today) {
+    const ws = getWeekStart(new Date(cur));
+    const wk = dateKey(ws);
+    if (wk !== lastWk) {
+      weeks.push({ key: wk, date: new Date(ws), pts: 0 });
+      lastWk = wk;
+    }
+    cur.setDate(cur.getDate()+1);
+  }
+  weeks.forEach(w => { w.pts = getWeekPoints(data, w.date); });
+
+  const canvas = document.getElementById('chart-weekly');
+  const W = canvas.parentElement.offsetWidth || 680;
+  canvas.width = W;
+  canvas.height = 140;
+  const ctx = canvas.getContext('2d');
+  ctx.clearRect(0, 0, W, 140);
+
+  if (weeks.length === 0) {
+    ctx.fillStyle = '#9E8589';
+    ctx.font = '13px DM Sans, sans-serif';
+    ctx.fillText('Nessun dato ancora.', 20, 70);
+    return;
+  }
+
+  const maxV = Math.max(...weeks.map(w=>w.pts), 50);
+  const padL = 35, padR = 10, padT = 15, padB = 30;
+  const w = W - padL - padR;
+  const h = 140 - padT - padB;
+  const bw = Math.max(18, Math.floor(w / weeks.length) - 6);
+
+  weeks.forEach((week, i) => {
+    const x = padL + (i / weeks.length) * w + (w / weeks.length - bw) / 2;
+    const bh = (week.pts / maxV) * h;
+    const y = padT + h - bh;
+    ctx.fillStyle = week.pts >= 50 ? '#4A7C5F' : '#C97B84';
+    ctx.beginPath();
+    ctx.roundRect ? ctx.roundRect(x, y, bw, bh, 4) : ctx.rect(x, y, bw, bh);
+    ctx.fill();
+
+    ctx.fillStyle = '#9E8589';
+    ctx.font = '11px DM Sans, sans-serif';
+    ctx.textAlign = 'center';
+    const wd = week.date;
+    ctx.fillText((wd.getDate()+'/'+(wd.getMonth()+1)), x + bw/2, 140 - 8);
+    if (week.pts > 0) {
+      ctx.fillStyle = week.pts >= 50 ? '#3B6D11' : '#8C4A54';
+      ctx.font = '11px DM Sans, sans-serif';
+      ctx.fillText(week.pts, x + bw/2, y - 4);
+    }
+  });
+
+  // linea 50
+  ctx.strokeStyle = 'rgba(196,168,130,0.6)';
+  ctx.setLineDash([4,3]);
+  const y50 = padT + h - (50 / maxV) * h;
+  ctx.beginPath(); ctx.moveTo(padL, y50); ctx.lineTo(W - padR, y50); ctx.stroke();
+  ctx.setLineDash([]);
+  ctx.fillStyle = '#C4A882';
+  ctx.font = '10px DM Sans, sans-serif';
+  ctx.textAlign = 'left';
+  ctx.fillText('50 pt', W - padR - 28, y50 - 3);
+}
+
+// ─── EXPORT CSV ───────────────────────────────────────────────────────────────
+function exportCSV() {
+  const data = loadData();
+  const rows = ['Data,Giorno,Punti,Perfect Day,Note'];
+  const cur = new Date(START);
+  while (cur <= END) {
+    const k = dateKey(cur);
+    const tasks = getTasksForDate(new Date(cur));
+    const dayData = data[k] || { tasks: Array(tasks.length).fill(false), note: '' };
+    const pts = dayData.tasks.filter(Boolean).length;
+    const perfect = pts === tasks.length;
+    const note = (dayData.note || '').replace(/"/g, '""');
+    rows.push(`${k},${DAYS_IT[cur.getDay()]},${pts},${perfect ? 'Sì' : 'No'},"${note}"`);
+    cur.setDate(cur.getDate()+1);
+  }
+  const csv = rows.join('\n');
+  const blob = new Blob(['\uFEFF' + csv], { type: 'text/csv;charset=utf-8;' });
+  const url = URL.createObjectURL(blob);
+  const a = document.createElement('a');
+  a.href = url; a.download = 'summer-reset-2026.csv'; a.click();
+  URL.revokeObjectURL(url);
+}
+
+// ─── NAV ─────────────────────────────────────────────────────────────────────
+function showSection(id) {
+  document.querySelectorAll('.section').forEach(s => s.classList.remove('active'));
+  document.querySelectorAll('.nav-btn').forEach(b => b.classList.remove('active'));
+  document.getElementById('s-' + id).classList.add('active');
+  event.currentTarget.classList.add('active');
+
+  if (id === 'progressi') { renderStats(); }
+  if (id === 'obiettivo') { renderGoalSection(loadData()); }
+}
+
+// ─── INIT ─────────────────────────────────────────────────────────────────────
+updateCountdown();
+setInterval(updateCountdown, 1000);
+updateGlobalProgress();
+renderOggi();
+renderCalendar();
+
+window.addEventListener('resize', () => {
+  if (document.getElementById('s-progressi').classList.contains('active')) {
+    renderStats();
+  }
+});
+</script>
+</body>
+</html>
